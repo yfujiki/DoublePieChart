@@ -7,12 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DB45C8EA1B87B4F800C56FB5 /* DoublePieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB45C8E91B87B4F800C56FB5 /* DoublePieViewController.swift */; };
+		DB45C8EC1B87B60600C56FB5 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB45C8EB1B87B60600C56FB5 /* Data.swift */; };
+		DB45C8F41B87CBCD00C56FB5 /* MultiplePieChartData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB45C8F31B87CBCD00C56FB5 /* MultiplePieChartData.swift */; };
+		DB45C8F61B87CE8100C56FB5 /* MultiplePieChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB45C8F51B87CE8100C56FB5 /* MultiplePieChartView.swift */; };
+		DB45C8F81B87CEA100C56FB5 /* MultiplePieChartRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB45C8F71B87CEA100C56FB5 /* MultiplePieChartRenderer.swift */; };
 		DBF875841B866CAA0020DCDA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF875831B866CAA0020DCDA /* AppDelegate.swift */; };
-		DBF875861B866CAA0020DCDA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF875851B866CAA0020DCDA /* ViewController.swift */; };
+		DBF875861B866CAA0020DCDA /* SinglePieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF875851B866CAA0020DCDA /* SinglePieViewController.swift */; };
 		DBF875891B866CAA0020DCDA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DBF875871B866CAA0020DCDA /* Main.storyboard */; };
 		DBF8758B1B866CAA0020DCDA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DBF8758A1B866CAA0020DCDA /* Images.xcassets */; };
 		DBF8758E1B866CAA0020DCDA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBF8758C1B866CAA0020DCDA /* LaunchScreen.xib */; };
 		DBF8759A1B866CAA0020DCDA /* DoublePieChartTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF875991B866CAA0020DCDA /* DoublePieChartTests.swift */; };
+		DBF875A41B866ECA0020DCDA /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBF875A31B866ECA0020DCDA /* Charts.framework */; };
+		DBF875A51B866ECA0020DCDA /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DBF875A31B866ECA0020DCDA /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -25,17 +32,37 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		DBF875A61B866ECA0020DCDA /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				DBF875A51B866ECA0020DCDA /* Charts.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		DB45C8E91B87B4F800C56FB5 /* DoublePieViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoublePieViewController.swift; sourceTree = "<group>"; };
+		DB45C8EB1B87B60600C56FB5 /* Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		DB45C8F31B87CBCD00C56FB5 /* MultiplePieChartData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MultiplePieChartData.swift; path = MultiplePieChart/MultiplePieChartData.swift; sourceTree = "<group>"; };
+		DB45C8F51B87CE8100C56FB5 /* MultiplePieChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MultiplePieChartView.swift; path = MultiplePieChart/MultiplePieChartView.swift; sourceTree = "<group>"; };
+		DB45C8F71B87CEA100C56FB5 /* MultiplePieChartRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MultiplePieChartRenderer.swift; path = MultiplePieChart/MultiplePieChartRenderer.swift; sourceTree = "<group>"; };
 		DBF8757E1B866CAA0020DCDA /* DoublePieChart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DoublePieChart.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBF875821B866CAA0020DCDA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DBF875831B866CAA0020DCDA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		DBF875851B866CAA0020DCDA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		DBF875851B866CAA0020DCDA /* SinglePieViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SinglePieViewController.swift; sourceTree = "<group>"; };
 		DBF875881B866CAA0020DCDA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DBF8758A1B866CAA0020DCDA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		DBF8758D1B866CAA0020DCDA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		DBF875931B866CAA0020DCDA /* DoublePieChartTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DoublePieChartTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBF875981B866CAA0020DCDA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DBF875991B866CAA0020DCDA /* DoublePieChartTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoublePieChartTests.swift; sourceTree = "<group>"; };
+		DBF875A31B866ECA0020DCDA /* Charts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Charts.framework; path = Carthage/Build/iOS/Charts.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DBF875A41B866ECA0020DCDA /* Charts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,9 +84,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DB45C8F21B87CB9500C56FB5 /* MultiplePieChart */ = {
+			isa = PBXGroup;
+			children = (
+				DB45C8F31B87CBCD00C56FB5 /* MultiplePieChartData.swift */,
+				DB45C8F51B87CE8100C56FB5 /* MultiplePieChartView.swift */,
+				DB45C8F71B87CEA100C56FB5 /* MultiplePieChartRenderer.swift */,
+			);
+			name = MultiplePieChart;
+			sourceTree = "<group>";
+		};
 		DBF875751B866CAA0020DCDA = {
 			isa = PBXGroup;
 			children = (
+				DBF875A31B866ECA0020DCDA /* Charts.framework */,
 				DBF875801B866CAA0020DCDA /* DoublePieChart */,
 				DBF875961B866CAA0020DCDA /* DoublePieChartTests */,
 				DBF8757F1B866CAA0020DCDA /* Products */,
@@ -77,12 +116,15 @@
 		DBF875801B866CAA0020DCDA /* DoublePieChart */ = {
 			isa = PBXGroup;
 			children = (
+				DB45C8F21B87CB9500C56FB5 /* MultiplePieChart */,
 				DBF875831B866CAA0020DCDA /* AppDelegate.swift */,
-				DBF875851B866CAA0020DCDA /* ViewController.swift */,
+				DBF875851B866CAA0020DCDA /* SinglePieViewController.swift */,
+				DB45C8E91B87B4F800C56FB5 /* DoublePieViewController.swift */,
 				DBF875871B866CAA0020DCDA /* Main.storyboard */,
 				DBF8758A1B866CAA0020DCDA /* Images.xcassets */,
 				DBF8758C1B866CAA0020DCDA /* LaunchScreen.xib */,
 				DBF875811B866CAA0020DCDA /* Supporting Files */,
+				DB45C8EB1B87B60600C56FB5 /* Data.swift */,
 			);
 			path = DoublePieChart;
 			sourceTree = "<group>";
@@ -122,6 +164,7 @@
 				DBF8757A1B866CAA0020DCDA /* Sources */,
 				DBF8757B1B866CAA0020DCDA /* Frameworks */,
 				DBF8757C1B866CAA0020DCDA /* Resources */,
+				DBF875A61B866ECA0020DCDA /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -212,8 +255,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DBF875861B866CAA0020DCDA /* ViewController.swift in Sources */,
+				DBF875861B866CAA0020DCDA /* SinglePieViewController.swift in Sources */,
+				DB45C8F41B87CBCD00C56FB5 /* MultiplePieChartData.swift in Sources */,
+				DB45C8EA1B87B4F800C56FB5 /* DoublePieViewController.swift in Sources */,
 				DBF875841B866CAA0020DCDA /* AppDelegate.swift in Sources */,
+				DB45C8F61B87CE8100C56FB5 /* MultiplePieChartView.swift in Sources */,
+				DB45C8F81B87CEA100C56FB5 /* MultiplePieChartRenderer.swift in Sources */,
+				DB45C8EC1B87B60600C56FB5 /* Data.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,6 +388,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = DoublePieChart/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -350,6 +402,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = DoublePieChart/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -409,6 +465,7 @@
 				DBF8759F1B866CAA0020DCDA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DBF875A01B866CAA0020DCDA /* Build configuration list for PBXNativeTarget "DoublePieChartTests" */ = {
 			isa = XCConfigurationList;
@@ -417,6 +474,7 @@
 				DBF875A21B866CAA0020DCDA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

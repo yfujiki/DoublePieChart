@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F25a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="fOJ-UZ-3WF">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Single Pie-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Single Pie" id="vXZ-lx-hvc" customClass="SinglePieViewController" customModule="DoublePieChart" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -15,11 +16,83 @@
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gkY-W2-Sds" customClass="PieChartView" customModule="Charts">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="gkY-W2-Sds" secondAttribute="trailing" constant="-16" id="0Fw-Xv-deh"/>
+                            <constraint firstItem="gkY-W2-Sds" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="BZs-kw-Jiu"/>
+                            <constraint firstItem="gkY-W2-Sds" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="-20" id="UnE-gq-Vhc"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="gkY-W2-Sds" secondAttribute="bottom" constant="-49" id="Ys1-NQ-EQ0"/>
+                        </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Single" id="QMp-aV-5iG"/>
+                    <navigationItem key="navigationItem" id="WS4-VD-I9T"/>
+                    <connections>
+                        <outlet property="chartView" destination="gkY-W2-Sds" id="gey-Bc-md7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1929" y="387"/>
+        </scene>
+        <!--Double Pie-->
+        <scene sceneID="w8d-Xf-WVH">
+            <objects>
+                <viewController title="Double Pie" id="urn-pT-mcg" customClass="DoublePieViewController" customModule="DoublePieChart" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="OiR-rt-ISz"/>
+                        <viewControllerLayoutGuide type="bottom" id="AGg-wY-ILL"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="NLX-mZ-fdZ">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="APa-nu-ELh" customClass="MultiplePieChartView" customModule="DoublePieChart" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="20" width="600" height="531"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="APa-nu-ELh" firstAttribute="leading" secondItem="NLX-mZ-fdZ" secondAttribute="leading" id="HOm-8K-bAR"/>
+                            <constraint firstItem="APa-nu-ELh" firstAttribute="top" secondItem="OiR-rt-ISz" secondAttribute="bottom" id="c40-VI-1oN"/>
+                            <constraint firstAttribute="trailing" secondItem="APa-nu-ELh" secondAttribute="trailing" id="gOG-8G-KGk"/>
+                            <constraint firstItem="AGg-wY-ILL" firstAttribute="top" secondItem="APa-nu-ELh" secondAttribute="bottom" id="uoC-VE-iAX"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Double" id="ZuZ-QG-rao"/>
+                    <navigationItem key="navigationItem" id="Fkn-j7-ufg"/>
+                    <connections>
+                        <outlet property="pieChartView" destination="APa-nu-ELh" id="qqx-qy-Q8v"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FU4-Jy-vjh" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1923" y="1092"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="6No-go-fbO">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="fOJ-UZ-3WF" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="U5N-ex-sGs">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="viewControllers" id="c0p-sP-Tiy"/>
+                        <segue destination="urn-pT-mcg" kind="relationship" relationship="viewControllers" id="0by-qP-zfY"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sms-hO-9UH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1117" y="387"/>
         </scene>
     </scenes>
 </document>
