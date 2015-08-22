@@ -18,13 +18,13 @@ import UIKit
 public class PieChartView: PieRadarChartViewBase
 {
     /// rect object that represents the bounds of the piechart, needed for drawing the circle
-    private var _circleBox = CGRect()
+    internal var _circleBox = CGRect()
     
     /// array that holds the width of each pie-slice in degrees
-    private var _drawAngles = [CGFloat]()
+    internal var _drawAngles = [CGFloat]()
     
     /// array that holds the absolute angle in degrees of each slice
-    private var _absoluteAngles = [CGFloat]()
+    internal var _absoluteAngles = [CGFloat]()
 
     public override init(frame: CGRect)
     {
@@ -105,7 +105,7 @@ public class PieChartView: PieRadarChartViewBase
     }
     
     /// calculates the needed angles for the chart slices
-    private func calcAngles()
+    internal func calcAngles()
     {
         _drawAngles = [CGFloat]()
         _absoluteAngles = [CGFloat]()

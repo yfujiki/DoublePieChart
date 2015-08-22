@@ -106,45 +106,128 @@ SWIFT_CLASS("_TtC6Charts9ChartData")
 - (SWIFT_NULLABILITY(nonnull) instancetype)initWithXVals:(NSArray * __nullable)xVals;
 - (SWIFT_NULLABILITY(nonnull) instancetype)initWithXVals:(NSArray * __nullable)xVals dataSet:(ChartDataSet * __nullable)dataSet;
 - (void)notifyDataChanged;
+
+/// returns the number of LineDataSets this object contains
 @property (nonatomic, readonly) NSInteger dataSetCount;
+
+/// returns the smallest y-value the data object contains.
 @property (nonatomic, readonly) double yMin;
 - (double)getYMin;
 - (double)getYMin:(enum AxisDependency)axis;
+
+/// returns the greatest y-value the data object contains.
 @property (nonatomic, readonly) double yMax;
 - (double)getYMax;
 - (double)getYMax:(enum AxisDependency)axis;
+
+/// returns the average length (in characters) across all values in the x-vals array
 @property (nonatomic, readonly) double xValAverageLength;
+
+/// returns the total y-value sum across all DataSet objects the this object represents.
 @property (nonatomic, readonly) double yValueSum;
+
+/// Returns the total number of y-values across all DataSet objects the this object represents.
 @property (nonatomic, readonly) NSInteger yValCount;
+
+/// Adds a new x-value to the chart data.
 - (void)addXValue:(NSString * __nullable)xVal;
+
+/// Removes the x-value at the specified index.
 - (void)removeXValue:(NSInteger)index;
+
+/// Returns the array of ChartDataSets this object holds.
 @property (nonatomic, copy) NSArray * __nonnull dataSets;
+
+/// returns the total number of x-values this ChartData object represents (the size of the x-values array)
 @property (nonatomic, readonly) NSInteger xValCount;
+
+/// Get the Entry for a corresponding highlight object
+///
+/// \param highlight 
+///
+/// \returns the entry that is highlighted
 - (ChartDataEntry * __nullable)getEntryForHighlight:(ChartHighlight * __nonnull)highlight;
+
+/// Returns the DataSet object with the given label. 
+/// sensitive or not. 
+/// IMPORTANT: This method does calculations at runtime. Use with care in performance critical situations.
+///
+/// \param label 
+///
+/// \param ignorecase 
 - (ChartDataSet * __nullable)getDataSetByLabel:(NSString * __nonnull)label ignorecase:(BOOL)ignorecase;
 - (ChartDataSet * __null_unspecified)getDataSetByIndex:(NSInteger)index;
 - (void)addDataSet:(ChartDataSet * __null_unspecified)d;
 - (void)handleEmptyAxis:(ChartDataSet * __nullable)firstLeft firstRight:(ChartDataSet * __nullable)firstRight;
+
+/// Removes the given DataSet from this data object.
+/// Also recalculates all minimum and maximum values.
+///
+/// \returns true if a DataSet was removed, false if no DataSet could be removed.
 - (BOOL)removeDataSet:(ChartDataSet * __null_unspecified)dataSet;
+
+/// Removes the DataSet at the given index in the DataSet array from the data object. 
+/// Also recalculates all minimum and maximum values. 
+///
+/// \returns true if a DataSet was removed, false if no DataSet could be removed.
 - (BOOL)removeDataSetByIndex:(NSInteger)index;
+
+/// Adds an Entry to the DataSet at the specified index. Entries are added to the end of the list.
 - (void)addEntry:(ChartDataEntry * __nonnull)e dataSetIndex:(NSInteger)dataSetIndex;
+
+/// Removes the given Entry object from the DataSet at the specified index.
 - (BOOL)removeEntry:(ChartDataEntry * __null_unspecified)entry dataSetIndex:(NSInteger)dataSetIndex;
+
+/// Removes the Entry object at the given xIndex from the ChartDataSet at the
+/// specified index. Returns true if an entry was removed, false if no Entry
+/// was found that meets the specified requirements.
 - (BOOL)removeEntryByXIndex:(NSInteger)xIndex dataSetIndex:(NSInteger)dataSetIndex;
+
+/// Returns the DataSet that contains the provided Entry, or null, if no DataSet contains this entry.
 - (ChartDataSet * __nullable)getDataSetForEntry:(ChartDataEntry * __null_unspecified)e;
+
+/// Returns the index of the provided DataSet inside the DataSets array of
+/// this data object. Returns -1 if the DataSet was not found.
 - (NSInteger)indexOfDataSet:(ChartDataSet * __nonnull)dataSet;
 - (ChartDataSet * __nullable)getFirstLeft;
 - (ChartDataSet * __nullable)getFirstRight;
+
+/// Returns all colors used across all DataSet objects this object represents.
 - (NSArray * __nullable)getColors;
+
+/// Generates an x-values array filled with numbers in range specified by the parameters. Can be used for convenience.
 - (NSArray * __nonnull)generateXVals:(NSInteger)from to:(NSInteger)to;
+
+/// Sets a custom ValueFormatter for all DataSets this data object contains.
 - (void)setValueFormatter:(NSNumberFormatter * __null_unspecified)formatter;
+
+/// Sets the color of the value-text (color in which the value-labels are drawn) for all DataSets this data object contains.
 - (void)setValueTextColor:(UIColor * __null_unspecified)color;
+
+/// Sets the font for all value-labels for all DataSets this data object contains.
 - (void)setValueFont:(UIFont * __null_unspecified)font;
+
+/// Enables / disables drawing values (value-text) for all DataSets this data object contains.
 - (void)setDrawValues:(BOOL)enabled;
+
+/// Enables / disables highlighting values for all DataSets this data object contains.
 @property (nonatomic) BOOL highlightEnabled;
+
+/// if true, value highlightning is enabled
 @property (nonatomic, readonly) BOOL isHighlightEnabled;
+
+/// Clears this data object from all DataSets and removes all Entries.
+/// Don't forget to invalidate the chart after this.
 - (void)clearValues;
+
+/// Checks if this data object contains the specified Entry. Returns true if so, false if not.
 - (BOOL)containsWithEntry:(ChartDataEntry * __nonnull)entry;
+
+/// Checks if this data object contains the specified DataSet. Returns true if so, false if not.
 - (BOOL)containsWithDataSet:(ChartDataSet * __nonnull)dataSet;
+
+/// MARK: - ObjC compatibility
+/// returns the average length (in characters) across all values in the x-vals array
 @property (nonatomic, readonly, copy) NSArray * __nonnull xValsObjc;
 @end
 
@@ -160,7 +243,11 @@ SWIFT_CLASS("_TtC6Charts12BarChartData")
 @interface BarChartData : BarLineScatterCandleChartData
 - (SWIFT_NULLABILITY(nonnull) instancetype)init OBJC_DESIGNATED_INITIALIZER;
 - (SWIFT_NULLABILITY(nonnull) instancetype)initWithXVals:(NSArray * __nullable)xVals dataSets:(NSArray * __nullable)dataSets OBJC_DESIGNATED_INITIALIZER;
+
+/// The spacing is relative to a full bar width
 @property (nonatomic) CGFloat groupSpace;
+
+/// Returns true if this BarData object contains grouped DataSets (more than 1 DataSet).
 @property (nonatomic, readonly) BOOL isGrouped;
 @end
 
@@ -187,15 +274,31 @@ SWIFT_CLASS("_TtC6Charts14ChartDataEntry")
 
 SWIFT_CLASS("_TtC6Charts17BarChartDataEntry")
 @interface BarChartDataEntry : ChartDataEntry
+
+/// Constructor for stacked bar entries.
 - (SWIFT_NULLABILITY(nonnull) instancetype)initWithValues:(NSArray * __nonnull)values xIndex:(NSInteger)xIndex OBJC_DESIGNATED_INITIALIZER;
+
+/// Constructor for normal bars (not stacked).
 - (SWIFT_NULLABILITY(nonnull) instancetype)initWithValue:(double)value xIndex:(NSInteger)xIndex OBJC_DESIGNATED_INITIALIZER;
+
+/// Constructor for stacked bar entries.
 - (SWIFT_NULLABILITY(nonnull) instancetype)initWithValues:(NSArray * __nonnull)values xIndex:(NSInteger)xIndex label:(NSString * __nonnull)label OBJC_DESIGNATED_INITIALIZER;
+
+/// Constructor for normal bars (not stacked).
 - (SWIFT_NULLABILITY(nonnull) instancetype)initWithValue:(double)value xIndex:(NSInteger)xIndex data:(id __nullable)data OBJC_DESIGNATED_INITIALIZER;
 - (double)getBelowSum:(NSInteger)stackIndex;
+
+/// \returns the sum of all negative values this entry (if stacked) contains. (this is a positive number)
 @property (nonatomic, readonly) double negativeSum;
+
+/// \returns the sum of all positive values this entry (if stacked) contains.
 @property (nonatomic, readonly) double positiveSum;
 - (void)calcPosNegSum;
+
+/// the values the stacked barchart holds
 @property (nonatomic, readonly) BOOL isStacked;
+
+/// the values the stacked barchart holds
 @property (nonatomic, copy) NSArray * __nullable values;
 - (id __nonnull)copyWithZone:(NSZone * __null_unspecified)zone;
 @end
@@ -207,28 +310,58 @@ SWIFT_CLASS("_TtC6Charts12ChartDataSet")
 @property (nonatomic, copy) NSString * __nullable label;
 @property (nonatomic) BOOL visible;
 @property (nonatomic) BOOL drawValuesEnabled;
+
+/// the color used for the value-text
 @property (nonatomic) UIColor * __nonnull valueTextColor;
+
+/// the font for the value-text labels
 @property (nonatomic) UIFont * __nonnull valueFont;
+
+/// the formatter used to customly format the values
 @property (nonatomic) NSNumberFormatter * __nullable valueFormatter;
+
+/// the axis this DataSet should be plotted against.
 @property (nonatomic) enum AxisDependency axisDependency;
 @property (nonatomic, readonly, copy) NSArray * __nonnull yVals;
 @property (nonatomic, readonly) double yValueSum;
 @property (nonatomic, readonly) double yMin;
 @property (nonatomic, readonly) double yMax;
+
+/// if true, value highlighting is enabled
 @property (nonatomic) BOOL highlightEnabled;
+
+/// \returns true if value highlighting is enabled for this dataset
 @property (nonatomic, readonly) BOOL isHighlightEnabled;
 - (SWIFT_NULLABILITY(nonnull) instancetype)init OBJC_DESIGNATED_INITIALIZER;
 - (SWIFT_NULLABILITY(nonnull) instancetype)initWithYVals:(NSArray * __nullable)yVals label:(NSString * __nullable)label OBJC_DESIGNATED_INITIALIZER;
 - (SWIFT_NULLABILITY(nonnull) instancetype)initWithYVals:(NSArray * __nullable)yVals;
+
+/// Use this method to tell the data set that the underlying data has changed
 - (void)notifyDataSetChanged;
 @property (nonatomic, readonly) NSInteger entryCount;
 - (double)yValForXIndex:(NSInteger)x;
+
+/// Returns the first Entry object found at the given xIndex with binary search. 
+/// If the no Entry at the specifed x-index is found, this method returns the Entry at the closest x-index. 
+/// Returns nil if no Entry object at that index.
 - (ChartDataEntry * __nullable)entryForXIndex:(NSInteger)x;
 - (NSArray * __nonnull)entriesForXIndex:(NSInteger)x;
 - (NSInteger)entryIndexWithXIndex:(NSInteger)x;
 - (NSInteger)entryIndexWithEntry:(ChartDataEntry * __nonnull)e isEqual:(BOOL)isEqual;
+
+/// Returns the number of entries this DataSet holds.
 @property (nonatomic, readonly) NSInteger valueCount;
+
+/// Adds an Entry to the DataSet dynamically.
+/// Entries are added to the end of the list.
+/// This will also recalculate the current minimum and maximum values of the DataSet and the value-sum.
+/// :param: e the entry to add
 - (void)addEntry:(ChartDataEntry * __nonnull)e;
+
+/// Adds an Entry to the DataSet dynamically.
+/// Entries are added to their appropriate index respective to it's x-index.
+/// This will also recalculate the current minimum and maximum values of the DataSet and the value-sum.
+/// :param: e the entry to add
 - (void)addEntryOrdered:(ChartDataEntry * __nonnull)e;
 - (BOOL)removeEntry:(ChartDataEntry * __nonnull)entry;
 - (BOOL)removeEntryWithXIndex:(NSInteger)xIndex;
@@ -237,7 +370,12 @@ SWIFT_CLASS("_TtC6Charts12ChartDataSet")
 - (void)setColor:(UIColor * __nonnull)color;
 @property (nonatomic, readonly) BOOL isVisible;
 @property (nonatomic, readonly) BOOL isDrawValuesEnabled;
+
+/// Checks if this DataSet contains the specified Entry.
+/// :returns: true if contains the entry, false if not.
 - (BOOL)contains:(ChartDataEntry * __nonnull)e;
+
+/// Removes all values from this DataSet and recalculates min and max value.
 - (void)clear;
 @property (nonatomic, readonly, copy, getter=description) NSString * __nonnull description;
 @property (nonatomic, readonly, copy, getter=debugDescription) NSString * __nonnull debugDescription;
@@ -259,14 +397,28 @@ SWIFT_CLASS("_TtC6Charts32BarLineScatterCandleChartDataSet")
 
 SWIFT_CLASS("_TtC6Charts15BarChartDataSet")
 @interface BarChartDataSet : BarLineScatterCandleChartDataSet
+
+/// space indicator between the bars in percentage of the whole width of one value (0.15 == 15% of bar width)
 @property (nonatomic) CGFloat barSpace;
+
+/// the color used for drawing the bar-shadows. The bar shadows is a surface behind the bar that indicates the maximum value
 @property (nonatomic) UIColor * __nonnull barShadowColor;
+
+/// the alpha value (transparency) that is used for drawing the highlight indicator bar. min = 0.0 (fully transparent), max = 1.0 (fully opaque)
 @property (nonatomic) CGFloat highLightAlpha;
+
+/// array of labels used to describe the different values of the stacked bars
 @property (nonatomic, copy) NSArray * __nonnull stackLabels;
 - (SWIFT_NULLABILITY(nonnull) instancetype)initWithYVals:(NSArray * __nullable)yVals label:(NSString * __nullable)label OBJC_DESIGNATED_INITIALIZER;
 - (id __nonnull)copyWithZone:(NSZone * __null_unspecified)zone;
+
+/// Returns the maximum number of bars that can be stacked upon another in this DataSet.
 @property (nonatomic, readonly) NSInteger stackSize;
+
+/// Returns true if this DataSet is stacked (stacksize > 1) or not.
 @property (nonatomic, readonly) BOOL isStacked;
+
+/// returns the overall entry count, including counting each stack-value individually
 @property (nonatomic, readonly) NSInteger entryCountStacks;
 @end
 
@@ -329,7 +481,11 @@ SWIFT_PROTOCOL("_TtP6Charts24BarChartRendererDelegate_")
 
 SWIFT_PROTOCOL("_TtP6Charts21ChartAnimatorDelegate_")
 @protocol ChartAnimatorDelegate
+
+/// Called when the Animator has stepped.
 - (void)chartAnimatorUpdated:(ChartAnimator * __nonnull)chartAnimator;
+
+/// Called when the Animator has stopped.
 - (void)chartAnimatorStopped:(ChartAnimator * __nonnull)chartAnimator;
 @end
 
@@ -921,14 +1077,27 @@ SWIFT_CLASS("_TtC6Charts15BubbleChartData")
 @interface BubbleChartData : BarLineScatterCandleChartData
 - (SWIFT_NULLABILITY(nonnull) instancetype)init OBJC_DESIGNATED_INITIALIZER;
 - (SWIFT_NULLABILITY(nonnull) instancetype)initWithXVals:(NSArray * __nullable)xVals dataSets:(NSArray * __nullable)dataSets OBJC_DESIGNATED_INITIALIZER;
+
+/// Sets the width of the circle that surrounds the bubble when highlighted for all DataSet objects this data object contains
 - (void)setHighlightCircleWidth:(CGFloat)width;
 @end
 
 
 SWIFT_CLASS("_TtC6Charts20BubbleChartDataEntry")
 @interface BubbleChartDataEntry : ChartDataEntry
+
+/// The size of the bubble.
 @property (nonatomic) CGFloat size;
+
+/// <dl><dt>xIndex</dt><dd><p>The index on the x-axis.</p></dd></dl>
+/// <dl><dt>val</dt><dd><p>The value on the y-axis.</p></dd></dl>
+/// <dl><dt>size</dt><dd><p>The size of the bubble.</p></dd></dl>
 - (SWIFT_NULLABILITY(nonnull) instancetype)initWithXIndex:(NSInteger)xIndex value:(double)value size:(CGFloat)size OBJC_DESIGNATED_INITIALIZER;
+
+/// <dl><dt>xIndex</dt><dd><p>The index on the x-axis.</p></dd></dl>
+/// <dl><dt>val</dt><dd><p>The value on the y-axis.</p></dd></dl>
+/// <dl><dt>size</dt><dd><p>The size of the bubble.</p></dd></dl>
+/// <dl><dt>data</dt><dd><p>Spot for additional data this Entry represents.</p></dd></dl>
 - (SWIFT_NULLABILITY(nonnull) instancetype)initWithXIndex:(NSInteger)xIndex value:(double)value size:(CGFloat)size data:(id __nullable)data OBJC_DESIGNATED_INITIALIZER;
 - (id __nonnull)copyWithZone:(NSZone * __null_unspecified)zone;
 @end
@@ -940,6 +1109,8 @@ SWIFT_CLASS("_TtC6Charts18BubbleChartDataSet")
 @property (nonatomic, readonly) double xMax;
 @property (nonatomic, readonly) CGFloat maxSize;
 - (void)setColor:(UIColor * __nonnull)color alpha:(CGFloat)alpha;
+
+/// Sets/gets the width of the circle that surrounds the bubble when highlighted
 @property (nonatomic) CGFloat highlightCircleWidth;
 - (SWIFT_NULLABILITY(nonnull) instancetype)init OBJC_DESIGNATED_INITIALIZER;
 - (SWIFT_NULLABILITY(nonnull) instancetype)initWithYVals:(NSArray * __nullable)yVals label:(NSString * __nullable)label OBJC_DESIGNATED_INITIALIZER;
@@ -999,14 +1170,28 @@ SWIFT_CLASS("_TtC6Charts15CandleChartData")
 
 SWIFT_CLASS("_TtC6Charts20CandleChartDataEntry")
 @interface CandleChartDataEntry : ChartDataEntry
+
+/// shadow-high value
 @property (nonatomic) double high;
+
+/// shadow-low value
 @property (nonatomic) double low;
+
+/// close value
 @property (nonatomic) double close;
+
+/// open value
 @property (nonatomic) double open;
 - (SWIFT_NULLABILITY(nonnull) instancetype)initWithXIndex:(NSInteger)xIndex shadowH:(double)shadowH shadowL:(double)shadowL open:(double)open close:(double)close OBJC_DESIGNATED_INITIALIZER;
 - (SWIFT_NULLABILITY(nonnull) instancetype)initWithXIndex:(NSInteger)xIndex shadowH:(double)shadowH shadowL:(double)shadowL open:(double)open close:(double)close data:(id __nullable)data OBJC_DESIGNATED_INITIALIZER;
+
+/// Returns the overall range (difference) between shadow-high and shadow-low.
 @property (nonatomic, readonly) double shadowRange;
+
+/// Returns the body size (difference between open and close).
 @property (nonatomic, readonly) double bodyRange;
+
+/// the center value of the candle. (Middle value between high and low)
 @property (nonatomic) double value;
 - (id __nonnull)copyWithZone:(NSZone * __null_unspecified)zone;
 @end
@@ -1014,10 +1199,17 @@ SWIFT_CLASS("_TtC6Charts20CandleChartDataEntry")
 
 SWIFT_CLASS("_TtC6Charts29LineScatterCandleChartDataSet")
 @interface LineScatterCandleChartDataSet : BarLineScatterCandleChartDataSet
+
+/// Enables / disables the horizontal highlight-indicator. If disabled, the indicator is not drawn.
 @property (nonatomic) BOOL drawHorizontalHighlightIndicatorEnabled;
+
+/// Enables / disables the vertical highlight-indicator. If disabled, the indicator is not drawn.
 @property (nonatomic) BOOL drawVerticalHighlightIndicatorEnabled;
 @property (nonatomic, readonly) BOOL isHorizontalHighlightIndicatorEnabled;
 @property (nonatomic, readonly) BOOL isVerticalHighlightIndicatorEnabled;
+
+/// Enables / disables both vertical and horizontal highlight-indicators.
+/// :param: enabled
 - (void)setDrawHighlightIndicators:(BOOL)enabled;
 - (id __nonnull)copyWithZone:(NSZone * __null_unspecified)zone;
 - (SWIFT_NULLABILITY(nonnull) instancetype)init OBJC_DESIGNATED_INITIALIZER;
@@ -1027,17 +1219,41 @@ SWIFT_CLASS("_TtC6Charts29LineScatterCandleChartDataSet")
 
 SWIFT_CLASS("_TtC6Charts18CandleChartDataSet")
 @interface CandleChartDataSet : LineScatterCandleChartDataSet
+
+/// the width of the candle-shadow-line in pixels. 
+/// :default: 3.0
 @property (nonatomic) CGFloat shadowWidth;
+
+/// the color of the shadow line
 @property (nonatomic) UIColor * __nullable shadowColor;
+
+/// use candle color for the shadow
 @property (nonatomic) BOOL shadowColorSameAsCandle;
+
+/// color for open <= close
 @property (nonatomic) UIColor * __nullable decreasingColor;
+
+/// color for open > close
 @property (nonatomic) UIColor * __nullable increasingColor;
+
+/// Are decreasing values drawn as filled?
 @property (nonatomic) BOOL decreasingFilled;
+
+/// Are increasing values drawn as filled?
 @property (nonatomic) BOOL increasingFilled;
 - (SWIFT_NULLABILITY(nonnull) instancetype)initWithYVals:(NSArray * __nullable)yVals label:(NSString * __nullable)label OBJC_DESIGNATED_INITIALIZER;
+
+/// the space that is left out on the left and right side of each candle,
+/// :default: 0.1 (10%), max 0.45, min 0.0
 @property (nonatomic) CGFloat bodySpace;
+
+/// Is the shadow color same as the candle color?
 @property (nonatomic, readonly) BOOL isShadowColorSameAsCandle;
+
+/// Are increasing values drawn as filled?
 @property (nonatomic, readonly) BOOL isIncreasingFilled;
+
+/// Are decreasing values drawn as filled?
 @property (nonatomic, readonly) BOOL isDecreasingFilled;
 @end
 
@@ -1102,27 +1318,94 @@ SWIFT_CLASS("_TtC6Charts13ChartAnimator")
 @property (nonatomic, weak) id <ChartAnimatorDelegate> __nullable delegate;
 @property (nonatomic, copy) void (^ __nullable updateBlock)(void);
 @property (nonatomic, copy) void (^ __nullable stopBlock)(void);
+
+/// the phase that is animated and influences the drawn values on the y-axis
 @property (nonatomic) CGFloat phaseX;
+
+/// the phase that is animated and influences the drawn values on the y-axis
 @property (nonatomic) CGFloat phaseY;
 - (SWIFT_NULLABILITY(nonnull) instancetype)init OBJC_DESIGNATED_INITIALIZER;
 - (void)stop;
+
+/// Animates the drawing / rendering of the chart on both x- and y-axis with the specified animation time.
+/// If animate(...) is called, no further calling of invalidate() is necessary to refresh the chart.
+/// :param: xAxisDuration duration for animating the x axis
+/// :param: yAxisDuration duration for animating the y axis
+/// :param: easingX an easing function for the animation on the x axis
+/// :param: easingY an easing function for the animation on the y axis
 - (void)animateWithXAxisDuration:(NSTimeInterval)xAxisDuration yAxisDuration:(NSTimeInterval)yAxisDuration easingX:(CGFloat (^ __nullable)(NSTimeInterval, NSTimeInterval))easingX easingY:(CGFloat (^ __nullable)(NSTimeInterval, NSTimeInterval))easingY;
+
+/// Animates the drawing / rendering of the chart on both x- and y-axis with the specified animation time.
+/// If animate(...) is called, no further calling of invalidate() is necessary to refresh the chart.
+/// :param: xAxisDuration duration for animating the x axis
+/// :param: yAxisDuration duration for animating the y axis
+/// :param: easingOptionX the easing function for the animation on the x axis
+/// :param: easingOptionY the easing function for the animation on the y axis
 - (void)animateWithXAxisDuration:(NSTimeInterval)xAxisDuration yAxisDuration:(NSTimeInterval)yAxisDuration easingOptionX:(enum ChartEasingOption)easingOptionX easingOptionY:(enum ChartEasingOption)easingOptionY;
+
+/// Animates the drawing / rendering of the chart on both x- and y-axis with the specified animation time.
+/// If animate(...) is called, no further calling of invalidate() is necessary to refresh the chart.
+/// :param: xAxisDuration duration for animating the x axis
+/// :param: yAxisDuration duration for animating the y axis
+/// :param: easing an easing function for the animation
 - (void)animateWithXAxisDuration:(NSTimeInterval)xAxisDuration yAxisDuration:(NSTimeInterval)yAxisDuration easing:(CGFloat (^ __nullable)(NSTimeInterval, NSTimeInterval))easing;
+
+/// Animates the drawing / rendering of the chart on both x- and y-axis with the specified animation time.
+/// If animate(...) is called, no further calling of invalidate() is necessary to refresh the chart.
+/// :param: xAxisDuration duration for animating the x axis
+/// :param: yAxisDuration duration for animating the y axis
+/// :param: easingOption the easing function for the animation
 - (void)animateWithXAxisDuration:(NSTimeInterval)xAxisDuration yAxisDuration:(NSTimeInterval)yAxisDuration easingOption:(enum ChartEasingOption)easingOption;
+
+/// Animates the drawing / rendering of the chart on both x- and y-axis with the specified animation time.
+/// If animate(...) is called, no further calling of invalidate() is necessary to refresh the chart.
+/// :param: xAxisDuration duration for animating the x axis
+/// :param: yAxisDuration duration for animating the y axis
 - (void)animateWithXAxisDuration:(NSTimeInterval)xAxisDuration yAxisDuration:(NSTimeInterval)yAxisDuration;
+
+/// Animates the drawing / rendering of the chart the x-axis with the specified animation time.
+/// If animate(...) is called, no further calling of invalidate() is necessary to refresh the chart.
+/// :param: xAxisDuration duration for animating the x axis
+/// :param: easing an easing function for the animation
 - (void)animateWithXAxisDuration:(NSTimeInterval)xAxisDuration easing:(CGFloat (^ __nullable)(NSTimeInterval, NSTimeInterval))easing;
+
+/// Animates the drawing / rendering of the chart the x-axis with the specified animation time.
+/// If animate(...) is called, no further calling of invalidate() is necessary to refresh the chart.
+/// :param: xAxisDuration duration for animating the x axis
+/// :param: easingOption the easing function for the animation
 - (void)animateWithXAxisDuration:(NSTimeInterval)xAxisDuration easingOption:(enum ChartEasingOption)easingOption;
+
+/// Animates the drawing / rendering of the chart the x-axis with the specified animation time.
+/// If animate(...) is called, no further calling of invalidate() is necessary to refresh the chart.
+/// :param: xAxisDuration duration for animating the x axis
 - (void)animateWithXAxisDuration:(NSTimeInterval)xAxisDuration;
+
+/// Animates the drawing / rendering of the chart the y-axis with the specified animation time.
+/// If animate(...) is called, no further calling of invalidate() is necessary to refresh the chart.
+/// :param: yAxisDuration duration for animating the y axis
+/// :param: easing an easing function for the animation
 - (void)animateWithYAxisDuration:(NSTimeInterval)yAxisDuration easing:(CGFloat (^ __nullable)(NSTimeInterval, NSTimeInterval))easing;
+
+/// Animates the drawing / rendering of the chart the y-axis with the specified animation time.
+/// If animate(...) is called, no further calling of invalidate() is necessary to refresh the chart.
+/// :param: yAxisDuration duration for animating the y axis
+/// :param: easingOption the easing function for the animation
 - (void)animateWithYAxisDuration:(NSTimeInterval)yAxisDuration easingOption:(enum ChartEasingOption)easingOption;
+
+/// Animates the drawing / rendering of the chart the y-axis with the specified animation time.
+/// If animate(...) is called, no further calling of invalidate() is necessary to refresh the chart.
+/// :param: yAxisDuration duration for animating the y axis
 - (void)animateWithYAxisDuration:(NSTimeInterval)yAxisDuration;
 @end
 
 
 
+
+/// This class encapsulates everything both Axis and Legend have in common.
 SWIFT_CLASS("_TtC6Charts18ChartComponentBase")
 @interface ChartComponentBase : NSObject
+
+/// flag that indicates if this component is enabled or not
 @property (nonatomic) BOOL enabled;
 - (SWIFT_NULLABILITY(nonnull) instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @property (nonatomic, readonly) BOOL isEnabled;
@@ -1144,19 +1427,41 @@ SWIFT_CLASS("_TtC6Charts13ChartAxisBase")
 @property (nonatomic, copy) NSArray * __null_unspecified gridLineDashLengths;
 @property (nonatomic) BOOL drawGridLinesEnabled;
 @property (nonatomic) BOOL drawAxisLineEnabled;
+
+/// flag that indicates of the labels of this axis should be drawn or not
 @property (nonatomic) BOOL drawLabelsEnabled;
+
+/// Sets the used x-axis offset for the labels on this axis.
+/// :default: 5.0
 @property (nonatomic) CGFloat xOffset;
+
+/// Sets the used y-axis offset for the labels on this axis.
+/// :default: 5.0 (or 0.0 on ChartYAxis)
 @property (nonatomic) CGFloat yOffset;
+
+/// Are the LimitLines drawn behind the data or in front of the data?
+/// :default: false
 @property (nonatomic) BOOL drawLimitLinesBehindDataEnabled;
 - (SWIFT_NULLABILITY(nonnull) instancetype)init OBJC_DESIGNATED_INITIALIZER;
 - (NSString * __nonnull)getLongestLabel;
 @property (nonatomic, readonly) BOOL isDrawGridLinesEnabled;
 @property (nonatomic, readonly) BOOL isDrawAxisLineEnabled;
 @property (nonatomic, readonly) BOOL isDrawLabelsEnabled;
+
+/// Are the LimitLines drawn behind the data or in front of the data?
+/// :default: false
 @property (nonatomic, readonly) BOOL isDrawLimitLinesBehindDataEnabled;
+
+/// Adds a new ChartLimitLine to this axis.
 - (void)addLimitLine:(ChartLimitLine * __nonnull)line;
+
+/// Removes the specified ChartLimitLine from the axis.
 - (void)removeLimitLine:(ChartLimitLine * __nonnull)line;
+
+/// Removes all LimitLines from the axis.
 - (void)removeAllLimitLines;
+
+/// Returns the LimitLines of this axis.
 @property (nonatomic, readonly, copy) NSArray * __nonnull limitLines;
 @end
 
@@ -1203,15 +1508,38 @@ enum ApproximatorType : NSInteger;
 
 SWIFT_CLASS("_TtC6Charts27ChartDataApproximatorFilter")
 @interface ChartDataApproximatorFilter : ChartDataBaseFilter
+
+/// the type of filtering algorithm to use
 @property (nonatomic) enum ApproximatorType type;
+
+/// the tolerance to be filtered with
+/// When using the Douglas-Peucker-Algorithm, the tolerance is an angle in degrees, that will trigger the filtering
 @property (nonatomic) double tolerance;
 @property (nonatomic) double scaleRatio;
 @property (nonatomic) double deltaRatio;
 - (SWIFT_NULLABILITY(nonnull) instancetype)init OBJC_DESIGNATED_INITIALIZER;
+
+/// Initializes the approximator with the given type and tolerance. 
+/// If toleranec <= 0, no filtering will be done.
 - (SWIFT_NULLABILITY(nonnull) instancetype)initWithType:(enum ApproximatorType)type tolerance:(double)tolerance OBJC_DESIGNATED_INITIALIZER;
+
+/// Sets type and tolerance.
+/// If tolerance <= 0, no filtering will be done.
 - (void)setup:(enum ApproximatorType)type tolerance:(double)tolerance;
+
+/// Sets the ratios for x- and y-axis, as well as the ratio of the scale levels
 - (void)setRatios:(double)deltaRatio scaleRatio:(double)scaleRatio;
+
+/// Filters according to type. Uses the pre set set tolerance
+///
+/// \param points the points to filter
 - (NSArray * __nonnull)filter:(NSArray * __nonnull)points;
+
+/// Filters according to type.
+///
+/// \param points the points to filter
+///
+/// \param tolerance the angle in degrees that will trigger the filtering
 - (NSArray * __nonnull)filter:(NSArray * __nonnull)points tolerance:(double)tolerance;
 @end
 
@@ -1261,8 +1589,12 @@ typedef SWIFT_ENUM(NSInteger, ChartEasingOption) {
 @class LineChartDataSet;
 @class LineChartData;
 
+
+/// Protocol for providing a custom logic to where the filling line of a DataSet should end. If setFillEnabled(...) is set to true.
 SWIFT_PROTOCOL("_TtP6Charts18ChartFillFormatter_")
 @protocol ChartFillFormatter
+
+/// Returns the vertical (y-axis) position where the filled-line of the DataSet should end.
 - (CGFloat)getFillLinePositionWithDataSet:(LineChartDataSet * __nonnull)dataSet data:(LineChartData * __nonnull)data chartMaxY:(double)chartMaxY chartMinY:(double)chartMinY;
 @end
 
@@ -1273,10 +1605,22 @@ SWIFT_CLASS("_TtC6Charts14ChartHighlight")
 - (SWIFT_NULLABILITY(nonnull) instancetype)init OBJC_DESIGNATED_INITIALIZER;
 - (SWIFT_NULLABILITY(nonnull) instancetype)initWithXIndex:(NSInteger)x dataSetIndex:(NSInteger)dataSetIndex OBJC_DESIGNATED_INITIALIZER;
 - (SWIFT_NULLABILITY(nonnull) instancetype)initWithXIndex:(NSInteger)x dataSetIndex:(NSInteger)dataSetIndex stackIndex:(NSInteger)stackIndex OBJC_DESIGNATED_INITIALIZER;
+
+/// Constructor, only used for stacked-barchart.
+///
+/// \param x the index of the highlighted value on the x-axis
+///
+/// \param dataSet the index of the DataSet the highlighted value belongs to
+///
+/// \param stackIndex references which value of a stacked-bar entry has been selected
+///
+/// \param range the range the selected stack-value is in
 - (SWIFT_NULLABILITY(nonnull) instancetype)initWithXIndex:(NSInteger)x dataSetIndex:(NSInteger)dataSetIndex stackIndex:(NSInteger)stackIndex range:(ChartRange * __nonnull)range;
 @property (nonatomic, readonly) NSInteger dataSetIndex;
 @property (nonatomic, readonly) NSInteger xIndex;
 @property (nonatomic, readonly) NSInteger stackIndex;
+
+/// \returns the range of values the selected value of a stacked bar is in. (this is only relevant for stacked-barchart)
 @property (nonatomic, readonly) ChartRange * __nullable range;
 @property (nonatomic, readonly, copy, getter=description) NSString * __nonnull description;
 - (BOOL)isEqual:(id __nullable)object;
@@ -1408,8 +1752,13 @@ SWIFT_CLASS("_TtC6Charts19ChartLegendRenderer")
 
 enum ChartLimitLabelPosition : NSInteger;
 
+
+/// The limit line is an additional feature for all Line, Bar and ScatterCharts.
+/// It allows the displaying of an additional line in the chart that marks a certain maximum / limit on the specified axis (x- or y-axis).
 SWIFT_CLASS("_TtC6Charts14ChartLimitLine")
 @interface ChartLimitLine : ChartComponentBase
+
+/// limit / maximum (the y-value or xIndex)
 @property (nonatomic) double limit;
 @property (nonatomic) UIColor * __nonnull lineColor;
 @property (nonatomic) CGFloat lineDashPhase;
@@ -1421,6 +1770,8 @@ SWIFT_CLASS("_TtC6Charts14ChartLimitLine")
 - (SWIFT_NULLABILITY(nonnull) instancetype)init OBJC_DESIGNATED_INITIALIZER;
 - (SWIFT_NULLABILITY(nonnull) instancetype)initWithLimit:(double)limit OBJC_DESIGNATED_INITIALIZER;
 - (SWIFT_NULLABILITY(nonnull) instancetype)initWithLimit:(double)limit label:(NSString * __nonnull)label OBJC_DESIGNATED_INITIALIZER;
+
+/// set the line width of the chart (min = 0.2, max = 12); default 2
 @property (nonatomic) CGFloat lineWidth;
 @end
 
@@ -1432,11 +1783,23 @@ typedef SWIFT_ENUM(NSInteger, ChartLimitLabelPosition) {
 
 SWIFT_CLASS("_TtC6Charts11ChartMarker")
 @interface ChartMarker : ChartComponentBase
+
+/// The marker image to render
 @property (nonatomic) UIImage * __nullable image;
+
+/// Use this to return the desired offset you wish the MarkerView to have on the x-axis.
 @property (nonatomic) CGPoint offset;
+
+/// The marker's size
 @property (nonatomic, readonly) CGSize size;
 - (SWIFT_NULLABILITY(nonnull) instancetype)init OBJC_DESIGNATED_INITIALIZER;
+
+/// Draws the ChartMarker on the given position on the given context
 - (void)drawWithContext:(CGContextRef __nonnull)context point:(CGPoint)point;
+
+/// This method enables a custom ChartMarker to update it's content everytime the MarkerView is redrawn according to the data entry it points to.
+///
+/// \param highlight the highlight object contains information about the highlighted value such as it's dataset-index, the selected range or stack-index (only stacked bar entries).
 - (void)refreshContentWithEntry:(ChartDataEntry * __nonnull)entry highlight:(ChartHighlight * __nonnull)highlight;
 @end
 
@@ -1446,6 +1809,9 @@ SWIFT_CLASS("_TtC6Charts10ChartRange")
 @property (nonatomic) double from;
 @property (nonatomic) double to;
 - (SWIFT_NULLABILITY(nonnull) instancetype)initFrom:(double)from to:(double)to OBJC_DESIGNATED_INITIALIZER;
+
+/// Returns true if this range contains (if the value is in between) the given value, false if not.
+/// :param: value
 - (BOOL)contains:(double)value;
 - (BOOL)isLarger:(double)value;
 - (BOOL)isSmaller:(double)value;
@@ -1594,19 +1960,50 @@ SWIFT_CLASS("_TtC6Charts10ChartXAxis")
 @interface ChartXAxis : ChartAxisBase
 @property (nonatomic) CGFloat labelWidth;
 @property (nonatomic) CGFloat labelHeight;
+
+/// the space that should be left out (in characters) between the x-axis labels
+/// This only applies if the number of labels that will be skipped in between drawn axis labels is not custom set.
+/// :default: 4
 @property (nonatomic) NSInteger spaceBetweenLabels;
+
+/// the modulus that indicates if a value at a specified index in an array(list) for the x-axis-labels is drawn or not. Draw when (index % modulus) == 0.
 @property (nonatomic) NSInteger axisLabelModulus;
+
+/// the modulus that indicates if a value at a specified index in an array(list) for the y-axis-labels is drawn or not. Draw when (index % modulus) == 0.
+/// Used only for Horizontal BarChart
 @property (nonatomic) NSInteger yAxisLabelModulus;
+
+/// if set to true, the chart will avoid that the first and last label entry in the chart "clip" off the edge of the chart
 @property (nonatomic) BOOL avoidFirstLastClippingEnabled;
+
+/// the position of the x-labels relative to the chart
 @property (nonatomic) enum XAxisLabelPosition labelPosition;
+
+/// if set to true, word wrapping the labels will be enabled.
+/// word wrapping is done using (value width * labelWidth)
+/// NOTE: currently supports all charts except pie/radar/horizontal-bar
 @property (nonatomic) BOOL wordWrapEnabled;
+
+/// :returns true if word wrapping the labels is enabled
 @property (nonatomic, readonly) BOOL isWordWrapEnabled;
+
+/// the width for wrapping the labels, as percentage out of one value width.
+/// used only when isWordWrapEnabled = true.
+/// :default 1.0
 @property (nonatomic) CGFloat wordWrapWidthPercent;
 - (SWIFT_NULLABILITY(nonnull) instancetype)init OBJC_DESIGNATED_INITIALIZER;
 - (NSString * __nonnull)getLongestLabel;
 @property (nonatomic, readonly) BOOL isAvoidFirstLastClippingEnabled;
+
+/// Sets the number of labels that should be skipped on the axis before the next label is drawn. 
+/// This will disable the feature that automatically calculates an adequate space between the axis labels and set the number of labels to be skipped to the fixed number provided by this method. 
+/// Call resetLabelsToSkip(...) to re-enable automatic calculation.
 - (void)setLabelsToSkip:(NSInteger)count;
+
+/// Calling this will disable a custom number of labels to be skipped (set by setLabelsToSkip(...)) while drawing the x-axis. Instead, the number of values to skip will again be calculated automatically.
 - (void)resetLabelsToSkip;
+
+/// Returns true if a custom axis-modulus has been set that determines the number of labels to skip when drawing.
 @property (nonatomic, readonly) BOOL isAxisModulusCustom;
 @property (nonatomic, copy) NSArray * __nonnull valuesObjc;
 @end
@@ -1657,40 +2054,97 @@ SWIFT_CLASS("_TtC6Charts28ChartXAxisRendererRadarChart")
 
 enum YAxisLabelPosition : NSInteger;
 
+
+/// Class representing the y-axis labels settings and its entries.
+/// Be aware that not all features the YLabels class provides are suitable for the RadarChart.
+/// Customizations that affect the value range of the axis need to be applied before setting data for the chart.
 SWIFT_CLASS("_TtC6Charts10ChartYAxis")
 @interface ChartYAxis : ChartAxisBase
 @property (nonatomic, copy) NSArray * __nonnull entries;
 @property (nonatomic, readonly) NSInteger entryCount;
+
+/// indicates if the top y-label entry is drawn or not
 @property (nonatomic) BOOL drawTopYLabelEntryEnabled;
+
+/// if true, the y-labels show only the minimum and maximum value
 @property (nonatomic) BOOL showOnlyMinMaxEnabled;
+
+/// flag that indicates if the axis is inverted or not
 @property (nonatomic) BOOL inverted;
+
+/// if true, the y-label entries will always start at zero
 @property (nonatomic) BOOL startAtZeroEnabled;
+
+/// if true, the set number of y-labels will be forced
 @property (nonatomic) BOOL forceLabelsEnabled;
+
+/// the formatter used to customly format the y-labels
 @property (nonatomic) NSNumberFormatter * __nullable valueFormatter;
+
+/// A custom minimum value for this axis. 
+/// If set, this value will not be calculated automatically depending on the provided data. 
+/// Use resetCustomAxisMin() to undo this. 
+/// Do not forget to set startAtZeroEnabled = false if you use this method.
+/// Otherwise, the axis-minimum value will still be forced to 0.
 @property (nonatomic) double customAxisMin;
+
+/// Set a custom maximum value for this axis. 
+/// If set, this value will not be calculated automatically depending on the provided data. 
+/// Use resetCustomAxisMax() to undo this.
 @property (nonatomic) double customAxisMax;
+
+/// axis space from the largest value to the top in percent of the total axis range
 @property (nonatomic) CGFloat spaceTop;
+
+/// axis space from the smallest value to the bottom in percent of the total axis range
 @property (nonatomic) CGFloat spaceBottom;
 @property (nonatomic) double axisMaximum;
 @property (nonatomic) double axisMinimum;
+
+/// the total range of values this axis covers
 @property (nonatomic) double axisRange;
+
+/// the position of the y-labels relative to the chart
 @property (nonatomic) enum YAxisLabelPosition labelPosition;
+
+/// the minimum width that the axis should take
+/// :default 0.0
 @property (nonatomic) CGFloat minWidth;
+
+/// the maximum width that the axis can take.
+/// use zero for disabling the maximum
+/// :default 0.0 (no maximum specified)
 @property (nonatomic) CGFloat maxWidth;
 - (SWIFT_NULLABILITY(nonnull) instancetype)init OBJC_DESIGNATED_INITIALIZER;
 - (SWIFT_NULLABILITY(nonnull) instancetype)initWithPosition:(enum AxisDependency)position OBJC_DESIGNATED_INITIALIZER;
 @property (nonatomic, readonly) enum AxisDependency axisDependency;
 - (void)setLabelCount:(NSInteger)count force:(BOOL)force;
+
+/// the number of label entries the y-axis should have
+/// max = 25,
+/// min = 2,
+/// default = 6,
+/// be aware that this number is not fixed and can only be approximated
 @property (nonatomic) NSInteger labelCount;
+
+/// By calling this method, any custom minimum value that has been previously set is reseted, and the calculation is done automatically.
 - (void)resetCustomAxisMin;
+
+/// By calling this method, any custom maximum value that has been previously set is reseted, and the calculation is done automatically.
 - (void)resetCustomAxisMax;
 - (CGSize)requiredSize;
 - (CGFloat)getRequiredHeightSpace;
 - (NSString * __nonnull)getLongestLabel;
+
+/// Returns the formatted y-label at the specified index. This will either use the auto-formatter or the custom formatter (if one is set).
 - (NSString * __nonnull)getFormattedLabel:(NSInteger)index;
+
+/// Returns true if this axis needs horizontal offset, false if no offset is needed.
 @property (nonatomic, readonly) BOOL needsOffset;
 @property (nonatomic, readonly) BOOL isInverted;
 @property (nonatomic, readonly) BOOL isStartAtZeroEnabled;
+
+/// \returns true if focing the y-label count is enabled. Default: false
 @property (nonatomic, readonly) BOOL isForceLabelsEnabled;
 @property (nonatomic, readonly) BOOL isShowOnlyMinMaxEnabled;
 @property (nonatomic, readonly) BOOL isDrawTopYLabelEntryEnabled;
@@ -1701,6 +2155,8 @@ typedef SWIFT_ENUM(NSInteger, YAxisLabelPosition) {
   YAxisLabelPositionInsideChart = 1,
 };
 
+
+/// Enum that specifies the axis a DataSet should be plotted against, either Left or Right.
 typedef SWIFT_ENUM(NSInteger, AxisDependency) {
   AxisDependencyLeft = 0,
   AxisDependencyRight = 1,
@@ -1935,6 +2391,8 @@ SWIFT_CLASS("_TtC6Charts22HorizontalBarChartView")
 @end
 
 
+
+/// Data object that encapsulates all data associated with a LineChart.
 SWIFT_CLASS("_TtC6Charts13LineChartData")
 @interface LineChartData : ChartData
 - (SWIFT_NULLABILITY(nonnull) instancetype)init OBJC_DESIGNATED_INITIALIZER;
@@ -1947,6 +2405,9 @@ SWIFT_CLASS("_TtC6Charts21LineRadarChartDataSet")
 @property (nonatomic) UIColor * __nonnull fillColor;
 @property (nonatomic) CGFloat fillAlpha;
 @property (nonatomic) BOOL drawFilledEnabled;
+
+/// line width of the chart (min = 0.2, max = 10)
+/// :default: 1
 @property (nonatomic) CGFloat lineWidth;
 @property (nonatomic, readonly) BOOL isDrawFilledEnabled;
 - (id __nonnull)copyWithZone:(NSZone * __null_unspecified)zone;
@@ -1962,12 +2423,22 @@ SWIFT_CLASS("_TtC6Charts16LineChartDataSet")
 @property (nonatomic) CGFloat circleRadius;
 @property (nonatomic) CGFloat lineDashPhase;
 @property (nonatomic, copy) NSArray * __null_unspecified lineDashLengths;
+
+/// if true, drawing circles is enabled
 @property (nonatomic) BOOL drawCirclesEnabled;
+
+/// if true, cubic lines are drawn instead of linear
 @property (nonatomic) BOOL drawCubicEnabled;
 @property (nonatomic) BOOL drawCircleHoleEnabled;
 - (SWIFT_NULLABILITY(nonnull) instancetype)init OBJC_DESIGNATED_INITIALIZER;
 - (SWIFT_NULLABILITY(nonnull) instancetype)initWithYVals:(NSArray * __nullable)yVals label:(NSString * __nullable)label OBJC_DESIGNATED_INITIALIZER;
+
+/// intensity for cubic lines (min = 0.05, max = 1)
+/// :default: 0.2
 @property (nonatomic) CGFloat cubicIntensity;
+
+/// Sets the one and ONLY color that should be used for this DataSet.
+/// Internally, this recreates the colors array and adds the specified color.
 - (void)setCircleColor:(UIColor * __nonnull)color;
 @property (nonatomic, readonly) BOOL isDrawCirclesEnabled;
 @property (nonatomic, readonly) BOOL isDrawCubicEnabled;
@@ -2019,37 +2490,12 @@ SWIFT_CLASS("_TtC6Charts12PieChartData")
 @end
 
 
-SWIFT_CLASS("_TtC6Charts15PieChartDataSet")
-@interface PieChartDataSet : ChartDataSet
-@property (nonatomic) CGFloat selectionShift;
+SWIFT_CLASS("_TtC6Charts20MultiplePieChartData")
+@interface MultiplePieChartData : PieChartData
+- (ChartDataSet * __nullable)getDataSetByIndex:(NSInteger)index;
+- (ChartDataSet * __nullable)getDataSetByLabel:(NSString * __nonnull)label ignorecase:(BOOL)ignorecase;
 - (SWIFT_NULLABILITY(nonnull) instancetype)init OBJC_DESIGNATED_INITIALIZER;
-- (SWIFT_NULLABILITY(nonnull) instancetype)initWithYVals:(NSArray * __nullable)yVals label:(NSString * __nullable)label OBJC_DESIGNATED_INITIALIZER;
-@property (nonatomic) CGFloat sliceSpace;
-- (id __nonnull)copyWithZone:(NSZone * __null_unspecified)zone;
-@end
-
-@class PieChartView;
-
-SWIFT_CLASS("_TtC6Charts16PieChartRenderer")
-@interface PieChartRenderer : ChartDataRendererBase
-@property (nonatomic) BOOL drawHoleEnabled;
-@property (nonatomic) BOOL holeTransparent;
-@property (nonatomic) UIColor * __nullable holeColor;
-@property (nonatomic) CGFloat holeRadiusPercent;
-@property (nonatomic) CGFloat transparentCircleRadiusPercent;
-@property (nonatomic) UIColor * __nonnull centerTextColor;
-@property (nonatomic) UIFont * __nonnull centerTextFont;
-@property (nonatomic) BOOL drawXLabelsEnabled;
-@property (nonatomic) BOOL usePercentValuesEnabled;
-@property (nonatomic, copy) NSString * __null_unspecified centerText;
-@property (nonatomic) BOOL drawCenterTextEnabled;
-@property (nonatomic) NSLineBreakMode centerTextLineBreakMode;
-@property (nonatomic) CGFloat centerTextRadiusPercent;
-- (SWIFT_NULLABILITY(nonnull) instancetype)initWithChart:(PieChartView * __nonnull)chart animator:(ChartAnimator * __nullable)animator viewPortHandler:(ChartViewPortHandler * __nonnull)viewPortHandler OBJC_DESIGNATED_INITIALIZER;
-- (void)drawDataWithContext:(CGContextRef __nonnull)context;
-- (void)drawValuesWithContext:(CGContextRef __nonnull)context;
-- (void)drawExtrasWithContext:(CGContextRef __nonnull)context;
-- (void)drawHighlightedWithContext:(CGContextRef __nonnull)context indices:(NSArray * __nonnull)indices;
+- (SWIFT_NULLABILITY(nonnull) instancetype)initWithXVals:(NSArray * __nullable)xVals dataSets:(NSArray * __nullable)dataSets OBJC_DESIGNATED_INITIALIZER;
 @end
 
 
@@ -2212,6 +2658,53 @@ SWIFT_CLASS("_TtC6Charts12PieChartView")
 @end
 
 
+SWIFT_CLASS("_TtC6Charts20MultiplePieChartView")
+@interface MultiplePieChartView : PieChartView
+- (SWIFT_NULLABILITY(nonnull) instancetype)initWithFrame:(CGRect)frame OBJC_DESIGNATED_INITIALIZER;
+- (SWIFT_NULLABILITY(nonnull) instancetype)initWithCoder:(NSCoder * __nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
+
+SWIFT_CLASS("_TtC6Charts15PieChartDataSet")
+@interface PieChartDataSet : ChartDataSet
+
+/// indicates the selection distance of a pie slice
+@property (nonatomic) CGFloat selectionShift;
+- (SWIFT_NULLABILITY(nonnull) instancetype)init OBJC_DESIGNATED_INITIALIZER;
+- (SWIFT_NULLABILITY(nonnull) instancetype)initWithYVals:(NSArray * __nullable)yVals label:(NSString * __nullable)label OBJC_DESIGNATED_INITIALIZER;
+
+/// the space that is left out between the piechart-slices, default: 0°
+/// --> no space, maximum 45, minimum 0 (no space)
+@property (nonatomic) CGFloat sliceSpace;
+- (id __nonnull)copyWithZone:(NSZone * __null_unspecified)zone;
+@end
+
+
+SWIFT_CLASS("_TtC6Charts16PieChartRenderer")
+@interface PieChartRenderer : ChartDataRendererBase
+@property (nonatomic) BOOL drawHoleEnabled;
+@property (nonatomic) BOOL holeTransparent;
+@property (nonatomic) UIColor * __nullable holeColor;
+@property (nonatomic) CGFloat holeRadiusPercent;
+@property (nonatomic) CGFloat transparentCircleRadiusPercent;
+@property (nonatomic) UIColor * __nonnull centerTextColor;
+@property (nonatomic) UIFont * __nonnull centerTextFont;
+@property (nonatomic) BOOL drawXLabelsEnabled;
+@property (nonatomic) BOOL usePercentValuesEnabled;
+@property (nonatomic, copy) NSString * __null_unspecified centerText;
+@property (nonatomic) BOOL drawCenterTextEnabled;
+@property (nonatomic) NSLineBreakMode centerTextLineBreakMode;
+@property (nonatomic) CGFloat centerTextRadiusPercent;
+- (SWIFT_NULLABILITY(nonnull) instancetype)initWithChart:(PieChartView * __nonnull)chart animator:(ChartAnimator * __nullable)animator viewPortHandler:(ChartViewPortHandler * __nonnull)viewPortHandler OBJC_DESIGNATED_INITIALIZER;
+- (void)drawDataWithContext:(CGContextRef __nonnull)context;
+- (void)drawValuesWithContext:(CGContextRef __nonnull)context;
+- (void)drawExtrasWithContext:(CGContextRef __nonnull)context;
+- (void)drawHighlightedWithContext:(CGContextRef __nonnull)context indices:(NSArray * __nonnull)indices;
+@end
+
+
+
 
 SWIFT_CLASS("_TtC6Charts14RadarChartData")
 @interface RadarChartData : ChartData
@@ -2299,6 +2792,8 @@ SWIFT_CLASS("_TtC6Charts16ScatterChartData")
 @interface ScatterChartData : BarLineScatterCandleChartData
 - (SWIFT_NULLABILITY(nonnull) instancetype)init OBJC_DESIGNATED_INITIALIZER;
 - (SWIFT_NULLABILITY(nonnull) instancetype)initWithXVals:(NSArray * __nullable)xVals dataSets:(NSArray * __nullable)dataSets OBJC_DESIGNATED_INITIALIZER;
+
+/// Returns the maximum shape-size across all DataSets.
 - (CGFloat)getGreatestShapeSize;
 @end
 
