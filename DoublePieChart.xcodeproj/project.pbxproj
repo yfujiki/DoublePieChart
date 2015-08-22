@@ -9,17 +9,14 @@
 /* Begin PBXBuildFile section */
 		DB45C8EA1B87B4F800C56FB5 /* DoublePieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB45C8E91B87B4F800C56FB5 /* DoublePieViewController.swift */; };
 		DB45C8EC1B87B60600C56FB5 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB45C8EB1B87B60600C56FB5 /* Data.swift */; };
-		DB45C8F41B87CBCD00C56FB5 /* MultiplePieChartData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB45C8F31B87CBCD00C56FB5 /* MultiplePieChartData.swift */; };
-		DB45C8F61B87CE8100C56FB5 /* MultiplePieChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB45C8F51B87CE8100C56FB5 /* MultiplePieChartView.swift */; };
-		DB45C8F81B87CEA100C56FB5 /* MultiplePieChartRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB45C8F71B87CEA100C56FB5 /* MultiplePieChartRenderer.swift */; };
+		DB45C9001B8815CB00C56FB5 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBF875A31B866ECA0020DCDA /* Charts.framework */; };
+		DB45C9011B8815CB00C56FB5 /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DBF875A31B866ECA0020DCDA /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		DBF875841B866CAA0020DCDA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF875831B866CAA0020DCDA /* AppDelegate.swift */; };
 		DBF875861B866CAA0020DCDA /* SinglePieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF875851B866CAA0020DCDA /* SinglePieViewController.swift */; };
 		DBF875891B866CAA0020DCDA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DBF875871B866CAA0020DCDA /* Main.storyboard */; };
 		DBF8758B1B866CAA0020DCDA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DBF8758A1B866CAA0020DCDA /* Images.xcassets */; };
 		DBF8758E1B866CAA0020DCDA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBF8758C1B866CAA0020DCDA /* LaunchScreen.xib */; };
 		DBF8759A1B866CAA0020DCDA /* DoublePieChartTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF875991B866CAA0020DCDA /* DoublePieChartTests.swift */; };
-		DBF875A41B866ECA0020DCDA /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBF875A31B866ECA0020DCDA /* Charts.framework */; };
-		DBF875A51B866ECA0020DCDA /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DBF875A31B866ECA0020DCDA /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,13 +30,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		DBF875A61B866ECA0020DCDA /* Embed Frameworks */ = {
+		DB45C9021B8815CB00C56FB5 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				DBF875A51B866ECA0020DCDA /* Charts.framework in Embed Frameworks */,
+				DB45C9011B8815CB00C56FB5 /* Charts.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -49,9 +46,6 @@
 /* Begin PBXFileReference section */
 		DB45C8E91B87B4F800C56FB5 /* DoublePieViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoublePieViewController.swift; sourceTree = "<group>"; };
 		DB45C8EB1B87B60600C56FB5 /* Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
-		DB45C8F31B87CBCD00C56FB5 /* MultiplePieChartData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MultiplePieChartData.swift; path = MultiplePieChart/MultiplePieChartData.swift; sourceTree = "<group>"; };
-		DB45C8F51B87CE8100C56FB5 /* MultiplePieChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MultiplePieChartView.swift; path = MultiplePieChart/MultiplePieChartView.swift; sourceTree = "<group>"; };
-		DB45C8F71B87CEA100C56FB5 /* MultiplePieChartRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MultiplePieChartRenderer.swift; path = MultiplePieChart/MultiplePieChartRenderer.swift; sourceTree = "<group>"; };
 		DBF8757E1B866CAA0020DCDA /* DoublePieChart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DoublePieChart.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBF875821B866CAA0020DCDA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DBF875831B866CAA0020DCDA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -70,7 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DBF875A41B866ECA0020DCDA /* Charts.framework in Frameworks */,
+				DB45C9001B8815CB00C56FB5 /* Charts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,16 +78,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		DB45C8F21B87CB9500C56FB5 /* MultiplePieChart */ = {
-			isa = PBXGroup;
-			children = (
-				DB45C8F31B87CBCD00C56FB5 /* MultiplePieChartData.swift */,
-				DB45C8F51B87CE8100C56FB5 /* MultiplePieChartView.swift */,
-				DB45C8F71B87CEA100C56FB5 /* MultiplePieChartRenderer.swift */,
-			);
-			name = MultiplePieChart;
-			sourceTree = "<group>";
-		};
 		DBF875751B866CAA0020DCDA = {
 			isa = PBXGroup;
 			children = (
@@ -116,7 +100,6 @@
 		DBF875801B866CAA0020DCDA /* DoublePieChart */ = {
 			isa = PBXGroup;
 			children = (
-				DB45C8F21B87CB9500C56FB5 /* MultiplePieChart */,
 				DBF875831B866CAA0020DCDA /* AppDelegate.swift */,
 				DBF875851B866CAA0020DCDA /* SinglePieViewController.swift */,
 				DB45C8E91B87B4F800C56FB5 /* DoublePieViewController.swift */,
@@ -164,7 +147,7 @@
 				DBF8757A1B866CAA0020DCDA /* Sources */,
 				DBF8757B1B866CAA0020DCDA /* Frameworks */,
 				DBF8757C1B866CAA0020DCDA /* Resources */,
-				DBF875A61B866ECA0020DCDA /* Embed Frameworks */,
+				DB45C9021B8815CB00C56FB5 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -256,11 +239,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				DBF875861B866CAA0020DCDA /* SinglePieViewController.swift in Sources */,
-				DB45C8F41B87CBCD00C56FB5 /* MultiplePieChartData.swift in Sources */,
 				DB45C8EA1B87B4F800C56FB5 /* DoublePieViewController.swift in Sources */,
 				DBF875841B866CAA0020DCDA /* AppDelegate.swift in Sources */,
-				DB45C8F61B87CE8100C56FB5 /* MultiplePieChartView.swift in Sources */,
-				DB45C8F81B87CEA100C56FB5 /* MultiplePieChartRenderer.swift in Sources */,
 				DB45C8EC1B87B60600C56FB5 /* Data.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
