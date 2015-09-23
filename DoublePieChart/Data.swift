@@ -28,7 +28,8 @@ class Data {
         let dataSet = PieChartDataSet(yVals: yVals, label: "Election Results")
         dataSet.colors = colors
 
-        let dataSet2 = PieChartDataSet(yVals: yVals, label: "Election Results2")
+        var yVals2 = generateYVals()
+        let dataSet2 = PieChartDataSet(yVals: yVals2, label: "Election Results2")
         dataSet2.colors = colors
 
         let data = MultiplePieChartData(xVals: xVals, dataSets: [dataSet, dataSet2])
@@ -40,7 +41,7 @@ class Data {
         var yVals = [BarChartDataEntry]()
 
         for i in 0..<xVals.count {
-            let dataEntry = BarChartDataEntry(value: Double(arc4random_uniform(10)), xIndex: i)
+            let dataEntry = BarChartDataEntry(value: Double(arc4random_uniform(20)), xIndex: i)
             yVals.append(dataEntry)
         }
 
