@@ -63,13 +63,13 @@
     xAxis.drawAxisLineEnabled = YES;
     xAxis.drawGridLinesEnabled = YES;
     xAxis.gridLineWidth = .3;
-
+    
     ChartYAxis *leftAxis = _chartView.leftAxis;
     leftAxis.labelFont = [UIFont systemFontOfSize:10.f];
     leftAxis.drawAxisLineEnabled = YES;
     leftAxis.drawGridLinesEnabled = YES;
     leftAxis.gridLineWidth = .3;
-
+    
     ChartYAxis *rightAxis = _chartView.rightAxis;
     rightAxis.labelFont = [UIFont systemFontOfSize:10.f];
     rightAxis.drawAxisLineEnabled = YES;

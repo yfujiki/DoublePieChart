@@ -18,7 +18,7 @@ public class MultiplePieChartData: PieChartData {
     }
 
     override public func getDataSetByLabel(label: String, ignorecase: Bool) -> ChartDataSet? {
-        var index = getDataSetIndexByLabel(label, ignorecase: true)
+        let index = getDataSetIndexByLabel(label, ignorecase: true)
 
         if index < 0 || index >= dataSets.count {
             return nil

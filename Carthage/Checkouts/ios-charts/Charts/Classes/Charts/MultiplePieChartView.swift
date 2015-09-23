@@ -45,13 +45,13 @@ public class MultiplePieChartView: PieChartView {
         {
             var drawAngles = [CGFloat]()
             var absoluteAngles = [CGFloat]()
-            
+
             drawAngles.reserveCapacity(_data.yValCount)
             absoluteAngles.reserveCapacity(_data.yValCount)
 
             var cnt = 0
 
-            var set = dataSets[i]
+            let set = dataSets[i]
             var entries = set.yVals
 
             for (var j = 0; j < entries.count; j++)
