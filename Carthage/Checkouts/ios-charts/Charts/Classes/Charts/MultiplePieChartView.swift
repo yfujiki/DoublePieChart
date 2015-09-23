@@ -10,6 +10,24 @@ import UIKit
 
 public class MultiplePieChartView: PieChartView {
 
+    internal var _drawAnglesPerDataSet: [[CGFloat]]?
+    internal var _absoluteAnglesPerDataSet: [[CGFloat]]?
+
+    public var drawAnglesPerDataSet: [[CGFloat]] {
+        return _drawAnglesPerDataSet ?? [[CGFloat]]()
+    }
+
+    public var absoluteAnglesPerDataSet: [[CGFloat]] {
+        return _absoluteAnglesPerDataSet ?? [[CGFloat]]()
+    }
+
+    internal override func initialize()
+    {
+        super.initialize()
+
+        renderer = MultiplePieChartRenderer(chart: self, animator: _animator, viewPortHandler: _viewPortHandler)
+    }
+
     /// calculates the needed angle for a given value
     private func calcAngle(value: Double, dataSet: ChartDataSet) -> CGFloat
     {
@@ -18,37 +36,42 @@ public class MultiplePieChartView: PieChartView {
 
     override internal func calcAngles()
     {
-        _drawAngles = [CGFloat]()
-        _absoluteAngles = [CGFloat]()
-
-        _drawAngles.reserveCapacity(_data.yValCount)
-        _absoluteAngles.reserveCapacity(_data.yValCount)
+        _drawAnglesPerDataSet = [[CGFloat]]()
+        _absoluteAnglesPerDataSet = [[CGFloat]]()
 
         var dataSets = _data.dataSets
 
-        var cnt = 0
-
         for (var i = 0; i < _data.dataSetCount; i++)
         {
+            var drawAngles = [CGFloat]()
+            var absoluteAngles = [CGFloat]()
+            
+            drawAngles.reserveCapacity(_data.yValCount)
+            absoluteAngles.reserveCapacity(_data.yValCount)
+
+            var cnt = 0
+
             var set = dataSets[i]
             var entries = set.yVals
 
             for (var j = 0; j < entries.count; j++)
             {
-                _drawAngles.append(calcAngle(abs(entries[j].value), dataSet: set))
+                drawAngles.append(calcAngle(abs(entries[j].value), dataSet: set))
 
                 if (cnt == 0)
                 {
-                    _absoluteAngles.append(_drawAngles[cnt])
+                    absoluteAngles.append(drawAngles[cnt])
                 }
                 else
                 {
-                    _absoluteAngles.append(_absoluteAngles[cnt - 1] + _drawAngles[cnt])
+                    absoluteAngles.append(absoluteAngles[cnt - 1] + drawAngles[cnt])
                 }
 
                 cnt++
             }
+
+            _drawAnglesPerDataSet!.append(drawAngles)
+            _absoluteAnglesPerDataSet!.append(absoluteAngles)
         }
     }
-
 }

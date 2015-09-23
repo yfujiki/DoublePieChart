@@ -92,6 +92,7 @@
 		5BD8F06E1AB89AD800566E05 /* HorizontalBarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6A54A01AA66B6A000F57C2 /* HorizontalBarChartView.swift */; };
 		DB45C8FC1B88126600C56FB5 /* MultiplePieChartData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB45C8FB1B88126600C56FB5 /* MultiplePieChartData.swift */; };
 		DB45C9051B881A0C00C56FB5 /* MultiplePieChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB45C9041B881A0C00C56FB5 /* MultiplePieChartView.swift */; };
+		DB45C9071B88202400C56FB5 /* MultiplePieChartRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB45C9061B88202400C56FB5 /* MultiplePieChartRenderer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -182,6 +183,7 @@
 		5BD8F06C1AB897D500566E05 /* ChartViewPortHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartViewPortHandler.swift; sourceTree = "<group>"; };
 		DB45C8FB1B88126600C56FB5 /* MultiplePieChartData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiplePieChartData.swift; sourceTree = "<group>"; };
 		DB45C9041B881A0C00C56FB5 /* MultiplePieChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiplePieChartView.swift; sourceTree = "<group>"; };
+		DB45C9061B88202400C56FB5 /* MultiplePieChartRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiplePieChartRenderer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -249,6 +251,7 @@
 				5B6A547D1AA5DF1A000F57C2 /* ChartYAxisRenderer.swift */,
 				5B6A547F1AA5DF28000F57C2 /* ChartYAxisRendererHorizontalBarChart.swift */,
 				5B6A54811AA5DF34000F57C2 /* ChartYAxisRendererRadarChart.swift */,
+				DB45C9061B88202400C56FB5 /* MultiplePieChartRenderer.swift */,
 			);
 			path = Renderers;
 			sourceTree = "<group>";
@@ -423,6 +426,7 @@
 		5BA8EC371A9D14DC00CE82E1 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = dcg;
 				TargetAttributes = {
@@ -531,6 +535,7 @@
 				5B0032491B6525FC00B6A2FE /* ChartHighlighter.swift in Sources */,
 				5B6A54D71AA74516000F57C2 /* ChartDataSet.swift in Sources */,
 				5B00324B1B652BF900B6A2FE /* BarChartHighlighter.swift in Sources */,
+				DB45C9071B88202400C56FB5 /* MultiplePieChartRenderer.swift in Sources */,
 				5B6A54781AA5DEF0000F57C2 /* ChartXAxisRendererRadarChart.swift in Sources */,
 				5B6A54A71AA66BA7000F57C2 /* PieRadarChartViewBase.swift in Sources */,
 				5B6A546E1AA5D2DC000F57C2 /* ChartAnimator.swift in Sources */,
